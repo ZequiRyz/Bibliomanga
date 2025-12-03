@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIBLIOMANGA</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+    <header class="encabezado">
+        <div class="logo">BIBLIOMANGA</div>
+        <button id="btn-header" onclick="abrirModalCrear()">+ Agregar Manga</button>
+    </header>
+
+    <main>
+        <div id="grilla-mangas"></div>
+    </main>
+
+    <div id="modal-crear" class="modal-overlay" style="display:none;">
+        <div class="modal-caja">
+            <span onclick="cerrarModalCrear()" class="cerrar-x">✕</span>
+            <h2>Nuevo Manga</h2>
+            
+            <label>1. Nombre del Manga:</label>
+            <div style="display:flex; gap:10px;">
+                <input type="text" id="crear-titulo" class="input-full" placeholder="Ej. One Piece">
+                <button onclick="buscarDatosJikan()" class="btn-buscar">🔍</button>
+            </div>
+
+            <div id="zona-resultados" style="display:none; margin-top:15px; border-top:1px solid #444; padding-top:15px;">
+                <div style="text-align:center; margin-bottom:10px;">
+                    <img id="preview-img" src="" style="width:80px; height:120px; object-fit:cover; border-radius:5px;">
+                    <p id="preview-autor" style="color:#888; font-size:0.8rem; margin:5px 0;"></p>
+                </div>
+
+                <div style="display:flex; gap:10px;">
+                    <div style="flex:1;">
+                        <label>Volumen Actual:</label>
+                        <select id="crear-volumen" class="input-full"></select>
+                    </div>
+                    <div style="flex:1;">
+                        <label>Capítulo Actual:</label>
+                        <select id="crear-capitulo" class="input-full"></select>
+                    </div>
+                </div>
+
+                <input type="hidden" id="crear-url">
+                <input type="hidden" id="crear-autor">
+                <input type="hidden" id="crear-total-vol">
+                <input type="hidden" id="crear-total-cap">
+
+                <button onclick="guardarNuevoManga()" class="btn-guardar">Guardar en mi Colección</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-editar" class="modal-overlay" style="display:none;">
+        <div class="modal-caja">
+            <span onclick="cerrarModalEditar()" class="cerrar-x">✕</span>
+            <h2>Actualizar Progreso</h2>
+            <h4 id="modal-titulo-edit" style="color:#00e676; text-align:center;">Titulo</h4>
+            <input type="hidden" id="modal-id">
+            
+            <div style="display:flex; gap:10px;">
+                <div style="flex:1;">
+                    <label>Volumen:</label>
+                    <select id="modal-volumen" class="input-full"></select>
+                </div>
+                <div style="flex:1;">
+                    <label>Capítulo:</label>
+                    <select id="modal-capitulo" class="input-full"></select>
+                </div>
+            </div>
+
+            <label>Estado:</label>
+            <select id="modal-estado" class="input-full">
+                <option value="Leyendo">Leyendo</option>
+                <option value="Completado">Completado</option>
+                <option value="Pendiente">Pendiente</option>
+                <option value="Abandonado">Abandonado</option>
+            </select>
+            
+            <button onclick="guardarEdicion()" class="btn-guardar">Guardar Cambios</button>
+            <button onclick="borrarManga()" class="btn-borrar">🗑 Eliminar Manga</button>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

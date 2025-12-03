@@ -1,0 +1,126 @@
+/* === DISEÑO DEFINITIVO (HEADER MORADO + BOTÓN VERDE) === */
+
+body {
+    margin: 0; padding: 0;
+    background-color: #050505; /* Fondo Negro */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}
+
+/* 1. ENCABEZADO MORADO */
+.encabezado {
+    background-color: #2d0046; /* Morado Oscuro */
+    border-bottom: 4px solid #4a0072; /* Línea un poco más clara abajo */
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    position: sticky; top: 0; z-index: 100;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 2. BOTÓN VERDE NEÓN (El que te gustó) */
+#btn-header {
+    background-color: #00e676; /* Verde Brillante */
+    color: #000; /* Texto negro para contraste */
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 0 10px rgba(0, 230, 118, 0.4); /* Resplandor verde */
+    transition: transform 0.2s;
+}
+#btn-header:hover {
+    background-color: #00c853; 
+    transform: scale(1.05);
+}
+
+/* 3. CONTENEDOR PRINCIPAL */
+main { padding: 40px; }
+
+#grilla-mangas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 30px;
+    max-width: 1400px; margin: 0 auto;
+}
+
+/* 4. TARJETAS */
+.manga-card {
+    background-color: #111; 
+    border: 1px solid #333;
+    border-radius: 8px; 
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: transform 0.2s, border-color 0.2s;
+}
+.manga-card:hover {
+    transform: translateY(-5px);
+    border-color: #00e676; /* Borde verde al pasar mouse */
+}
+.portada { width: 100%; height: 320px; object-fit: cover; }
+
+.info { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; }
+.titulo { margin: 0 0 5px 0; font-size: 1.1rem; color: #fff; }
+.autor { color: #888; font-size: 0.85rem; margin-bottom: 10px; font-style: italic; }
+.progreso { margin-top: auto; font-weight: bold; color: #b388ff; font-size: 0.9rem; margin-bottom: 10px; }
+
+/* COLORES DE ESTADO */
+.estado-badge { padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; width: fit-content; margin-bottom: 10px; text-transform: uppercase;}
+.estado-Leyendo { background: #1565c0; color: white; }
+.estado-Completado { background: #2e7d32; color: white; }
+.estado-Pendiente { background: #f9a825; color: black; }
+.estado-Abandonado { background: #c62828; color: white; }
+
+/* 5. MODALES */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9); z-index: 1000;
+    display: flex; justify-content: center; align-items: center;
+}
+.modal-caja {
+    background: #1a1a1a; width: 350px; padding: 30px; border-radius: 10px;
+    border: 1px solid #444; position: relative;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+.modal-caja h2 { margin-top: 0; color: #00e676; text-align: center;}
+.cerrar-x { position: absolute; top: 15px; right: 15px; cursor: pointer; color: #aaa; font-size: 1.2rem; }
+
+.input-full {
+    width: 100%; padding: 12px; margin-top: 5px; margin-bottom: 15px;
+    background: #252525; border: 1px solid #444; color: white; border-radius: 5px; box-sizing: border-box;
+}
+.btn-guardar {
+    width: 100%; padding: 12px; background: #00e676; color: black;
+    border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 1rem;
+}
+.btn-guardar:hover { background: #00c853; }
+.btn-editar {
+    width: 100%; background: transparent; border: 1px solid #555; color: #ccc;
+    padding: 8px; border-radius: 4px; cursor: pointer;
+}
+.btn-editar:hover { background: #333; color: white; }
+
+.btn-buscar {
+    padding: 10px; background: #333; color: white; border: 1px solid #555;
+    border-radius: 5px; cursor: pointer;
+}
+.btn-buscar:hover { background: #555; }
+
+.btn-borrar {
+    width: 100%; margin-top: 15px; padding: 10px;
+    background: transparent; border: 1px solid #d32f2f; color: #ef5350;
+    border-radius: 5px; cursor: pointer; font-weight: bold;
+}
+.btn-borrar:hover { background: #d32f2f; color: white; }
