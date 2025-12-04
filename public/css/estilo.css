@@ -1,4 +1,4 @@
-/* === DISEÑO DEFINITIVO (HEADER MORADO + BOTÓN VERDE) === */
+
 
 body {
     margin: 0; padding: 0;
@@ -7,10 +7,10 @@ body {
     color: white;
 }
 
-/* 1. ENCABEZADO MORADO */
+/* 1. ENCABEZADO */
 .encabezado {
     background-color: #2d0046; /* Morado Oscuro */
-    border-bottom: 4px solid #4a0072; /* Línea un poco más clara abajo */
+    border-bottom: 4px solid #4a0072; 
     height: 70px;
     display: flex;
     align-items: center;
@@ -28,17 +28,17 @@ body {
     letter-spacing: 1px;
 }
 
-/* 2. BOTÓN VERDE NEÓN (El que te gustó) */
+/* 2. BOTÓN VERDE NEÓN */
 #btn-header {
     background-color: #00e676; /* Verde Brillante */
-    color: #000; /* Texto negro para contraste */
+    color: #000; 
     border: none;
     padding: 12px 30px;
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
     font-size: 1rem;
-    box-shadow: 0 0 10px rgba(0, 230, 118, 0.4); /* Resplandor verde */
+    box-shadow: 0 0 10px rgba(0, 230, 118, 0.4); 
     transition: transform 0.2s;
 }
 #btn-header:hover {

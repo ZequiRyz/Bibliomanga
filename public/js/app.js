@@ -38,7 +38,7 @@ async function cargarMangas() {
     } catch (error) { console.error(error); }
 }
 
-// === 2. FUNCIÓN PARA LLENAR COMBOBOX (VERSIÓN MEJORADA) ===
+// === 2. FUNCIÓN PARA LLENAR COMBOBOX (2000 casillas) ===
 function llenarCombo(idSelect, actual, total) {
     const select = document.getElementById(idSelect);
     select.innerHTML = ""; // Limpiar lista anterior
@@ -50,7 +50,7 @@ function llenarCombo(idSelect, actual, total) {
     select.add(opcion0);
 
     // LÓGICA INTELIGENTE:
-    // 1. Si la API nos da el total exacto (ej. Naruto tiene 700), usamos ese número.
+    // 1. Si la API nos da el total exacto (Naruto tiene 700), usamos ese número.
     // 2. Si la API dice "0" (porque sigue saliendo como One Piece), ponemos 2000 por seguridad.
     let limite = total > 0 ? total : 2000; 
 
@@ -72,7 +72,7 @@ function llenarCombo(idSelect, actual, total) {
     }
 }
 
-// === 3. BUSCAR DATOS (PARA EL MODAL CREAR) ===
+// === 3. BUSCAR DATOS ===
 async function buscarDatosJikan() {
     const titulo = document.getElementById('crear-titulo').value;
     if(!titulo) return alert("Escribe un nombre");
