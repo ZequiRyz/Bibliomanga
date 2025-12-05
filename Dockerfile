@@ -1,19 +1,28 @@
-FROM richarvey/nginx-php-fpm:latest
+# Usamos una imagen ligera de PHP oficial
+FROM php:8.2-cli
 
+# 1. Instalar utilidades y el driver para PostgreSQL
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    libpq-dev \
+    && docker-php-ext-install pdo pdo_pgsql
+
+# 2. Instalar Composer (el gestor de paquetes)
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# 3. Preparar la carpeta de trabajo
+WORKDIR /var/www/html
 COPY . .
 
-# Configuración para Laravel
-ENV SKIP_COMPOSER 0
-ENV WEBROOT /var/www/html/public
-ENV PHP_ERRORS_STDERR 1
-ENV COMPOSER_ALLOW_SUPERUSER 1
-
-# Instalar dependencias
+# 4. Instalar las librerías de tu proyecto
 RUN composer install --no-dev --optimize-autoloader
 
-# Permisos
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+# 5. ¡EL TRUCO! Borrar el caché manualmente para que no busque 127.0.0.1
+RUN rm -f bootstrap/cache/config.php
 
-# Esto borra cualquier configuración vieja pegada
-RUN php artisan config:clear
-RUN php artisan cache:clear
+# 6. Dar permisos a las carpetas de almacenamiento
+RUN chown -R www-data:www-data storage bootstrap/cache
+
+# 7. El comando que arranca todo automáticamente
+CMD bash -c "php artisan config:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=10000"
