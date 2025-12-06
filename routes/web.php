@@ -8,18 +8,15 @@ Route::get('/', function () {
     return redirect('/index.html');
 });
 
-// 2. ARREGLO TÉCNICO: Ruta secreta para crear las tablas en Render
 Route::get('/migrar-ahora', function () {
     try {
-        // Limpiamos la memoria para evitar errores de conexión viejos
         Artisan::call('config:clear');
         
-        // Ejecutamos la migración (crear tablas)
-        Artisan::call('migrate', ["--force" => true]);
+        // CAMBIO AQUÍ: Usamos 'migrate:fresh' para reconstruir la tabla con las columnas nuevas
+        Artisan::call('migrate:fresh', ["--force" => true]);
         
-        return '<h1 style="color:green; text-align:center; font-family:sans-serif; margin-top:50px;">✅ ¡ÉXITO TOTAL! <br> La tabla de Mangas se creó correctamente.</h1>';
+        return '<h1 style="color:green; text-align:center;">¡LISTO! Base de datos reconstruida con columnas de Capítulos.</h1>';
     } catch (\Exception $e) {
-        // Si falla, nos muestra el error en pantalla
-        return '<h1 style="color:red; font-family:sans-serif;">❌ ERROR:</h1><pre>' . $e->getMessage() . '</pre>';
+        return '<h1 style="color:red">ERROR:</h1><pre>' . $e->getMessage() . '</pre>';
     }
 });

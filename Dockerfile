@@ -18,7 +18,7 @@ COPY . .
 # 4. Instalar las librerías de tu proyecto
 RUN composer install --no-dev --optimize-autoloader
 
-# 5. ¡EL TRUCO! Borrar el caché manualmente para que no busque 127.0.0.1
+# 5. Borrar el caché manualmente para que no busque 127.0.0.1
 RUN rm -f bootstrap/cache/config.php
 
 # 6. Dar permisos a las carpetas de almacenamiento
